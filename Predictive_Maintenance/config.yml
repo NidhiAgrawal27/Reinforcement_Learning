@@ -1,0 +1,50 @@
+data_parameters:
+  generate_data: 0 # 1 for yes, 0 for no for generating train and test samples
+  num_train_samples: 5000 # Num of training samples to generate
+  num_test_samples: 10 # Num of test samples to generate
+  months_since_last_maintenance: 4 # Max number of months in generated data
+  max_operational_hours: 50 # Max number of operational hours in generated data
+  max_wear_level: 9 # Max wear level in generated data
+  max_error_rate: 3 # Max error rate in generated data
+
+env_params:
+  # Ranges to reduce after maintenance
+  reduce_wear_level: [2,10]
+  reduce_error_rate: [1,4]
+  # Ranges to increase after operation
+  add_op_hrs: [10,30]
+  add_wear_level: [0,2]
+  add_error_rate: [0,2]
+  # Max values for when maintenance is required
+  max_wear_level: 10 # max wear level after which maintenance is required
+  max_error_rate: 4 # max error rate after which maintenance is required
+  max_op_hrs: 100 # max operational hours after which maintenance is required
+  max_months_for_failure: 10 # max months after which machuine should be replaced
+  maintain_every_n_months: 4 # Maintenance required every n months
+  # Costs and rewards
+  maintenance_cost: -2
+  failure_cost: -3
+  correct_maintenance_reward: 10
+  incorrect_operation_penalty: -5
+  operation_reward: 100
+
+q_agent_params:
+  learning_rate: 0.1 # Alpha value: controls how much the Q-value is adjusted
+  discount_factor: 0.9 # Gamma value: controls how much importance is given to future rewards
+  epsilon: 0.8 # Exploration rate
+  epsilon_decay: 0.8
+  min_epsilon: 0.1
+
+train_params:
+  action_size: 2 # Two possible actions: 0 (operate), 1 (maintain)
+  episodes: 50 # Number of episodes for training
+  max_steps: 20 # Max steps per episode
+
+dir_params:
+  data_dir: 'data/'
+  logs_dir: 'logs/'
+
+filenames:
+  train_file_name: 'train.csv'
+  test_file_name: 'test.csv'
+
