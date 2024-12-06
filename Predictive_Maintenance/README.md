@@ -1,19 +1,86 @@
-# About
+# Predictive Maintenance for Machines using Reinforcement Learning
 
-This repository contains the source code for applying reinforcement learning for 'Predictive Maintenance for Machines'.
+## Overview
 
-## Objective: 
+This repository contains the source code for application of reinforcement learning to schedule maintenance for a laboratory equipment. The goal is to minimize machine downtime and optimize operational efficiency by predicting when maintenance is required based on sensor data.
 
-Use Reinforcement Learning to predict and schedule maintenance for lab instruments to avoid downtime.
+### Objective
 
-Environment: Laboratory equipment with sensors monitoring usage and wear.
-State: Current machine condition (e.g., usage time, error rates).
-Actions: Schedule maintenance or continue operation.
-Rewards:
-- Positive: Machine is operational.
-- Negative: Unnecessary maintenance or equipment breakdowns.
+The RL agent learns to:
 
-## Data: Generate data for training and testing
+- Predict Maintenance Needs: Decide whether to schedule maintenance or continue operation based on the machine's current state.
+- Optimize Rewards:
+    - Positive Rewards: Ensuring the machine remains operational without unnecessary maintenance.
+    - Negative Rewards: Avoiding breakdowns or unnecessary maintenance.
 
+### Environment Details
 
+- State: Machine condition indicators such as operational hours, wear levels, and error rates.
+- Actions: Two possible actions:
+    - 0: Continue operation.
+    - 1: Perform maintenance.
+- Rewards:
+    - High reward for keeping the machine operational without excessive maintenance.
+    - Penalties for breakdowns or unnecessary maintenance.
 
+### Components
+
+#### Configuration
+
+- config.yml: Defines key parameters such as data generation, environment settings, and Q-learning hyperparameters.
+
+#### Data Generation
+
+- DataGenerator.py: Generates synthetic datasets for training and testing based on configurable parameters such as wear level and operational hours.
+
+#### Reinforcement Learning Framework
+
+- EnvPredictiveMaintenance.py: Simulates the environment where the agent operates, providing states, actions, rewards, and transitions.
+- QLearningAgent.py: Implements the Q-learning algorithm to train the agent:
+    - Exploration vs. exploitation (epsilon-greedy policy).
+    - Q-value updates using the Bellman equation.
+    - Saving/loading the Q-table.
+
+#### Training and Testing
+
+- main_train.py:
+    - Loads configurations.
+    - Generates training data (if configured).
+    - Trains the agent across episodes.
+    - Saves the trained Q-table.
+- main_test.py:
+    - Loads configurations.
+    - Generates/Loads test data (as configured).
+    - Loads trained Q-table.
+    - Evaluates the agent's performance on unseen data.
+    - Generates visualizations of rewards, state progression, and action distributions.
+
+#### Visualization
+- visualization.py: Provides plotting functions to analyze the agent's performance:
+    - Reward trends across episodes.
+    - Action distributions (e.g., maintenance vs. operation).
+    - Wear level and error rate progression.
+
+### Execution
+
+- Generate Data:
+    - Update the generate_data parameter in config.yml to 1 to create a new dataset.
+- Train the Agent:
+    - Execute main_train.py to generate/load train data (as configured) and train the agent.
+    - The Q-table will be saved automatically for future use.
+- Test the Agent:
+    - Run main_test.py to generate/load test data (as configured) and to evaluate the agent on test data.
+    - Analyze the generated plots to understand the agent's performance.
+
+### Key Metrics
+
+- Total Rewards: Cumulative reward across all episodes.
+- Action Distribution: The balance between maintenance actions and continued operations.
+- Failure Rate: Percentage of machine failures during testing.
+- Reward Trends: Visual trends showing agent performance over episodes.
+
+### Future Improvements
+
+- Deep Reinforcement Learning: Extend Q-learning to Deep Q-Networks for more complex state representations.
+- Real-World Data Integration: Replace synthetic data with actual sensor readings.
+- Hyperparameter Optimization: Automate tuning of RL hyperparameters.
