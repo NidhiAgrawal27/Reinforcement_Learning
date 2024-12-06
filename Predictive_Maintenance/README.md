@@ -84,3 +84,11 @@ The RL agent learns to:
 - Deep Reinforcement Learning: Extend Q-learning to Deep Q-Networks for more complex state representations.
 - Real-World Data Integration: Replace synthetic data with actual sensor readings.
 - Hyperparameter Optimization: Automate tuning of RL hyperparameters.
+
+### References
+
+Siraskar, Rajesh, Satish Kumar, Shruti Patil, Arunkumar Bongale, and Ketan Kotecha. "Reinforcement learning for predictive maintenance: A systematic technical review." Artificial Intelligence Review 56, no. 11 (2023): 12885-12947.
+
+https://www.researchgate.net/publication/369530421_Reinforcement_learning_for_predictive_maintenance_a_systematic_technical_review
+<img width="2483" alt="image" src="https://github.com/user-attachments/assets/4b861abd-4cc1-473c-ac62-fdabef2c7291">
+
